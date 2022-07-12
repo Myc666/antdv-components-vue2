@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^3.2.10",
+    "dayjs": "^1.11.3",
     "unplugin-vue-components": "^0.21.1",
     "vue": "^3.2.25"
   },

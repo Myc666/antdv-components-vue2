@@ -13,7 +13,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: './build.ts',
+      entry: './build3.ts',
       name: 'ComponentsLib',
       fileName: format => `components-lib.${format}.js`
     }

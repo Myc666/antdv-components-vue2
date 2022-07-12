@@ -1,4 +1,4 @@
-import SomeComponent from './src/components/RangePicker.vue'
+import SomeComponent from './src/components/RangePicker.ce.vue'
 import { reactive, createApp, h } from 'vue'
 import { DatePicker } from "ant-design-vue";
 
