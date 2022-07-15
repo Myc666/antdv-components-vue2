@@ -38,12 +38,16 @@ class VueCustomComponent extends HTMLElement {
             val = Number(val);
         }
 
+        console.log(attrName, 6);
+        console.log(val, 7);
+
         this._props[attrName] = val;
     }
 
     // Mutation observer to handle attribute changes, basically two-way binding
     private connectObserver() {
         return new MutationObserver(mutations => {
+
             mutations.forEach(mutation => {
                 if (mutation.type === "attributes") {
                     const attrName = mutation.attributeName as string;
@@ -93,7 +97,7 @@ class VueCustomComponent extends HTMLElement {
                 this._numberProps.push(propName);
             }
 
-            this.setAttr(propName);
+            this.setAttr(propDetail);
         });
 
         this.createEventProxies();
