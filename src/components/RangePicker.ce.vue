@@ -5,7 +5,7 @@
       @ok="onRangeOk"
       @openChange="onOpenChange"
       @calendarChange="onCalendarChange"
-      :style="_domStyle"
+      :style="domStyle1"
       :allow-clear="_allowClear"
       :autofocus="_autofocus"
       :bordered="_bordered"
@@ -96,6 +96,7 @@ export default defineComponent({
     const parseProps = reactive({})
     const timeRange = ref()
     const locale1 = ref()
+    const domStyle1 = ref()
     const dates = ref();
     const hackValue = ref();
 
@@ -103,7 +104,7 @@ export default defineComponent({
       if (props[v] !== undefined && props[v] !== null) {
         if (v === 'value') {
           const tr = JSON.parse(props.value)
-          console.log(tr)
+
           if (tr.length === 2 && tr[0] && tr[1]) {
             timeRange.value = [dayjs(tr[0]), dayjs(tr[1])]
           } else {
@@ -120,9 +121,13 @@ export default defineComponent({
           }
 
         } else if (v === 'locale') {
-          parseProps[`_${v}`] = props[v]
+          locale1.value = props[v]
+          dayjs.locale(props[v] === 'en-US' ? 'en': 'zh-cn');
+
         } else if (v === 'uuid') {
           parseProps[`_${v}`] = props[v]
+        } else if (v === 'domStyle') {
+          domStyle1.value = props[v]
         } else {
           parseProps[`_${v}`] = JSON.parse(props[v])
         }
@@ -153,6 +158,13 @@ export default defineComponent({
           dayjs.locale(newProps === 'en-US' ? 'en': 'zh-cn');
         },
         {deep: true}
+    )
+
+    watch(
+        () => props.domStyle,
+        (newProps) => {
+          domStyle1.value = JSON.parse(newProps)
+        }
     )
 
     // const disabledDate = current => {
@@ -237,6 +249,7 @@ export default defineComponent({
       disabledTime,
       dayjs,
       locale1,
+      domStyle1,
       enUS,
       zhCN,
     };
